@@ -521,4 +521,40 @@ public class ArraySetTest {
         assertTrue(testArraySet.removeAll(toRemove));
         assertEquals(0, testArraySet.size());
     }
+	
+	@Test
+	public void testRetainAllRemoveOne() {
+		for (int i = 0; i < MEDIUM; i++) {
+			testArraySet.add(i);
+		}
+		Collection<Integer> specifiedCollection = new ArrayList<>();
+		for (int i = 1; i < MEDIUM; i++) {
+			specifiedCollection.add(i);
+		}
+		assertTrue(testArraySet.retainAll(specifiedCollection));
+		assertFalse(testArraySet.contains(0));
+		assertEquals(999, testArraySet.size());
+	}
+
+	@Test
+	public void testRetainAllNoRemove() {
+		Collection<Integer> specifiedCollection = new ArrayList<>();
+		for (int i = 0; i < MEDIUM; i++) {
+			testArraySet.add(i);
+			specifiedCollection.add(i);
+		}
+		assertFalse(testArraySet.retainAll(specifiedCollection));
+		assertEquals(1000, testArraySet.size());
+	}
+
+	@Test
+	public void testRetainAllException() {
+		for (int i = 0; i < MEDIUM; i++) {
+			testArraySet.add(i);
+		}
+		Collection<Integer> specifiedCollection = null;
+		assertThrows(NullPointerException.class, () -> {
+			testArraySet.retainAll(specifiedCollection);
+		});
+	}
 }
