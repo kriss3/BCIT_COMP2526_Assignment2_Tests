@@ -206,6 +206,15 @@ public class ArraySetTest {
         testArraySet.clear();
         assertEquals(testArraySet.size(), 0);
     }
+	
+	@Test
+    public void testThatIsEmptyReturnTrueWhenContainingNoElementFalseOtherWise() {
+        assertTrue(testArraySet.isEmpty());
+        for (int i = 0; i < SMALL; ++i) {
+            testArraySet.add(i);
+        }
+        assertFalse(testArraySet.isEmpty());
+    }
 
     @Test
     public void testAddOneDuplicateSequentiallySmallSet() {
