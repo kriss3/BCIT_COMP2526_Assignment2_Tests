@@ -7,8 +7,9 @@ Get all ArraySet required methods unit tested.
 	    combined them and pushed as one file. From here we can keep adding new tests.\
 22Nov2020 - Merging changes from Galina for RemoveAll\
 		Merging changes from Albina for RetainAll\
-24Nov2020 - Adding minor test for isEmpty()
-
+24Nov2020 - Adding minor test for isEmpty()\
+25Nov2020 - Adding tests for contains/containsAll\\
+			Thank you Rafael
 			
-Current Number of Tests: 50
+Current Number of Tests: 57
 			

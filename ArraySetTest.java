@@ -566,4 +566,69 @@ public class ArraySetTest {
 			testArraySet.retainAll(specifiedCollection);
 		});
 	}
+	
+	@Test
+	public void testContainsAllEmptySetEmptyCollection() {
+    Collection<Integer> toCompare = new ArrayList<>();
+    assertTrue(testArraySet.containsAll(toCompare));
+	}
+
+	@Test
+	public void testContainsAllEmptySetNonEmptyCollection() {
+		Collection<Integer> toCompare = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+		assertFalse(testArraySet.containsAll(toCompare));
+	}
+
+	@Test
+	public void testContainsAllRemoveNone() {
+		for (int i = 0; i < SMALL; i++) {
+			testArraySet.add(i);
+		}
+		Collection<Integer> toCompare = new ArrayList<>(Arrays.asList(1, 3, 5, 7, 9));
+		assertTrue(testArraySet.containsAll(toCompare));
+	}
+
+	@Test
+	public void testContainsAllRemoveFirst() {
+		for (int i = 0; i < SMALL; i++) {
+			testArraySet.add(i);
+		}
+		Collection<Integer> toCompare = new ArrayList<>(Arrays.asList(1, 3, 5, 7, 9));
+		assertTrue(testArraySet.remove(1));
+		assertFalse(testArraySet.containsAll(toCompare));
+	}
+
+	@Test
+	public void testContainsAllRemoveLast() {
+		for (int i = 0; i < SMALL; i++) {
+			testArraySet.add(i);
+		}
+		Collection<Integer> toCompare = new ArrayList<>(Arrays.asList(1, 3, 5, 7, 9));
+		assertTrue(testArraySet.remove(9));
+		assertFalse(testArraySet.containsAll(toCompare));
+	}
+
+	@Test
+	public void testContainsAllRemoveAll() {
+		for (int i = 0; i < SMALL; i++) {
+			testArraySet.add(i);
+		}
+		Collection<Integer> toCompare = new ArrayList<>(Arrays.asList(1, 3, 5, 7, 9));
+		assertTrue(testArraySet.removeAll(toCompare));
+		assertFalse(testArraySet.containsAll(toCompare));
+	}
+
+	@Test
+	public void testContainsAllRemoveNonPresentElements() {
+		for (int i = 0; i < SMALL; i++) {
+			testArraySet.add(i);
+		}
+		Collection<Integer> toCompare = new ArrayList<>(Arrays.asList(1, 3, 5, 7, 9));
+		for (int i = 0; i < SMALL; i++) {
+			if (i % 2 == 0) {
+				assertTrue(testArraySet.remove(i));
+			}
+		}
+		assertTrue(testArraySet.containsAll(toCompare));
+	}
 }
